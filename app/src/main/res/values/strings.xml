@@ -1,3 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Auto Glance</string>
+
+
+    <string name="app_name" translatable="false">WakeUp!</string>
+
+
+    <string name="app_introduction">"This app will change your phone\n(if only a little)"</string>
+    <string name="appversion_text">"App-Version: "</string>
+    <string name="contact_button_text">Contact</string>
+    <string name="contact_text">The app \'WakeUp!\' is a product of SquareApp. In case of question or problem do not hestitate to contact me.</string>
+    <string name="share_button_text">Share</string>
+    <string name="share_text">Do not hestitate to share this app with your friends if you like to.</string>
+
+    <string name="activate_text">Activate</string>
+    <string name="disable_text">Disable</string>
+
+    <string name="share_via_email_text">Send mail using</string>
+    <string name="share_link_text">Share via</string>
+
+    <string name="time_out_title">Time-Out</string>
+    <string name="time_out_text">Screen won\'t turn on while this time</string>
+    <string name="from_text">From</string>
+    <string name="to_text">to</string>
+
+    <string name="viewTime_title">Display time</string>
+    <string name="viewTime_text">The number of seconds that the screen remains activated</string>
+
+    <string name="smart_device_title">Smart device</string>
+    <string name="smart_device_text">Screen won\'t turn on if device is in your pocket or lies on its front</string>
+    <string name="smart_device_warning">This setting could affect your battery life</string>
+
+    <string name="about_title">About</string>
+    <string name="about_text">See information about this app and its developer</string>
 </resources>

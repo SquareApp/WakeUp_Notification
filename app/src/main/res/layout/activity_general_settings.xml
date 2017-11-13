@@ -8,57 +8,42 @@
     tools:context="com.squareapp.notion.GeneralSettingsActivity"
     android:background="#121314">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1C1C1F">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_settings"
-                    android:tint="@android:color/white"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Settings"
-                    android:textColor="@android:color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
-                    android:layout_gravity="center"/>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.Toolbar>
+        <ImageView
+            android:id="@+id/appIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_gravity="center_horizontal|top"
+            />
 
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="44dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:scrollbarThumbVertical="@drawable/scrollbar">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="vertical">
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+
+
+
 
 
                 <FrameLayout
@@ -75,7 +60,7 @@
                             android:id="@+id/timeoutTitleText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Time-Out"
+                            android:text="@string/time_out_title"
                             android:textColor="@android:color/white"
                             android:textSize="16sp"/>
 
@@ -83,7 +68,7 @@
                             android:id="@+id/timeoutDescriptionText"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:text="Screen won't turn on while this time"
+                            android:text="@string/time_out_text"
                             android:textColor="#a9a9a9"
                             android:textSize="14sp"/>
 
@@ -97,7 +82,7 @@
                             android:id="@+id/timeOut_TimeText1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="From"
+                            android:text="@string/from_text"
                             android:layout_marginTop="10dp"
                             android:textColor="@android:color/white"
                             android:visibility="visible"
@@ -120,7 +105,7 @@
                                 android:id="@+id/timeOut_TimeText3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="to"
+                                android:text="@string/to_text"
                                 android:layout_marginTop="10dp"
                                 android:textColor="@android:color/white"
                                 android:visibility="visible"
@@ -163,7 +148,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -181,7 +167,7 @@
                                 android:id="@+id/timeoutTitleText4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="View time"
+                                android:text="@string/viewTime_title"
                                 android:textColor="@android:color/white"
                                 android:textSize="16sp"/>
 
@@ -189,7 +175,7 @@
                                 android:id="@+id/timeoutDescriptionText4"
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
-                                android:text="The amount of seconds the screen will be awake"
+                                android:text="@string/viewTime_text"
                                 android:textColor="#a9a9a9"
                                 android:textSize="14sp"/>
 
@@ -206,7 +192,7 @@
                             android:layout_gravity="center"
                             android:gravity="right"
                             android:layout_marginRight="15dp"
-                            android:text="4s"
+                            android:text="8s"
                             android:textColor="@android:color/white"
                             android:textSize="16sp"/>
 
@@ -214,14 +200,19 @@
                     </LinearLayout>
 
 
-                    <SeekBar
+
+
+                    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
                         android:id="@+id/viewTimeSeekbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:backgroundTint="@android:color/background_light"
-                        android:max="12"
-                        android:theme="@style/Seekbar"
-                        android:progressBackgroundTint="#ffffff"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dsb_min="8"
+                    app:dsb_max="16"
+                    app:dsb_trackColor="#69ffffff"
+                    app:dsb_rippleColor="#1ED760"
+                    app:dsb_indicatorColor="#1ED760"
+                    app:dsb_progressColor="#1ED760"
+                    />
 
 
 
@@ -231,6 +222,7 @@
                     android:layout_height="2dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
+                    android:visibility="visible"
                     />
 
                 <FrameLayout
@@ -248,7 +240,7 @@
                             android:id="@+id/timeoutTitleText2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Smart device"
+                            android:text="@string/smart_device_title"
                             android:textColor="@android:color/white"
                             android:textSize="16sp"/>
 
@@ -256,7 +248,7 @@
                             android:id="@+id/timeoutDescriptionText2"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:text="Screen won't turn on if device is in your pocket or lies on its front"
+                            android:text="@string/smart_device_text"
                             android:textColor="#a9a9a9"
                             android:textSize="14sp"/>
 
@@ -282,7 +274,7 @@
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
-                            android:text="This setting could reduce your battery life time"
+                            android:text="@string/smart_device_warning"
 
                             android:textColor="@android:color/white"
                             android:visibility="visible"
@@ -315,13 +307,15 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone">
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+
                         >
 
                         <TextView
@@ -362,6 +356,7 @@
                     android:layout_height="2dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
+                    android:visibility="gone"
                     />
 
                 <FrameLayout
@@ -372,30 +367,74 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/timeoutTitleText3"
+                            android:id="@+id/exclusionTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="App selection"
+                            android:text="Exclusion"
                             android:textColor="@android:color/white"
                             android:textSize="16sp"/>
 
                         <TextView
-                            android:id="@+id/timeoutDescriptionText3"
+                            android:id="@+id/exclusionText"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:text="Notifications from these apps won't turn on the screen"
+                            android:text="Apps which won't turn on the screen"
                             android:textColor="#a9a9a9"
                             android:textSize="14sp"/>
+
+                        <LinearLayout
+                            android:id="@+id/editExclusionLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:id="@+id/editExclusionLayoutClickable"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@drawable/ic_format_list"
+                                android:tint="@android:color/white"
+                                android:layout_gravity="center"/>
+
+
+                        <TextView
+                            android:id="@+id/exclusionApps"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:text="Edit exclusion"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
 
 
                     </LinearLayout>
 
 
                     <Switch
+                        android:id="@+id/exclusionSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|center_vertical"
@@ -410,6 +449,7 @@
                     android:layout_marginTop="15dp"
                     />
 
+
                 <FrameLayout
                     android:id="@+id/aboutLayout"
                     android:layout_width="match_parent"
@@ -417,6 +457,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/aboutTextLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -426,7 +467,7 @@
                             android:id="@+id/timeoutTitleText5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="About"
+                            android:text="@string/about_title"
                             android:textColor="@android:color/white"
                             android:textSize="16sp"/>
 
@@ -434,7 +475,7 @@
                             android:id="@+id/timeoutDescriptionText5"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:text="See who developed this app and which libraries were used"
+                            android:text="@string/about_text"
                             android:textColor="#a9a9a9"
                             android:textSize="14sp"/>
 
@@ -503,27 +544,31 @@
 
                 </FrameLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    />
+
 
 
             </LinearLayout>
 
 
         </ScrollView>
-
-
     </LinearLayout>
+
 
     <Button
         android:id="@+id/activateButton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:text="Activate"
+        android:text="@string/activate_text"
         android:background="@drawable/button_background"
         android:textColor="@android:color/white"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="20dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
         android:elevation="10dp"
         app:layout_behavior="com.squareapp.notion.MoveUpwardBehavior"
         />

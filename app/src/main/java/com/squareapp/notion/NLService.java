@@ -3,6 +3,10 @@ package com.squareapp.notion;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
@@ -19,11 +23,13 @@ import java.util.Calendar;
 public class NLService extends NotificationListenerService
 {
 
-    private Context context;
 
+    private Context context;
 
     private SharedPreferences mySharedPreferences;
     private SharedPreferences.Editor mEditor;
+
+    private DatabaseHelperClass myDb;
 
 
     @Override
@@ -35,6 +41,10 @@ public class NLService extends NotificationListenerService
 
         this.mySharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         this.mEditor = mySharedPreferences.edit();
+
+        this.myDb = new DatabaseHelperClass(context);
+
+        Log.i("NLService", "NLService created");
 
 
     }
@@ -54,39 +64,13 @@ public class NLService extends NotificationListenerService
 
         Log.i("TimeOutInfo", "Start:" + String.valueOf(start.get(Calendar.HOUR_OF_DAY)));
         Log.i("TimeOutInfo", "End:" + String.valueOf(end.get(Calendar.HOUR_OF_DAY)));
-        /*
-        SensorManager sensorManager;
-        Sensor sensor;
-
-        sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-
-        sensorManager.registerListener(new SensorEventListener()
-        {
-            @Override
-            public void onSensorChanged(SensorEvent event)
-            {
-                if(event.values[0] == 0)
-                {
-
-                }
-                else
-                {
 
 
-                }
-            }
-
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int accuracy)
-            {
-
-            }
-        }, sensor, 2 * 1000 * 1000);
-        */
+        
 
         if(mySharedPreferences.getBoolean("TimeOutEnabled", false) == true)
         {
+
 
             if(start.get(Calendar.HOUR_OF_DAY) < end.get(Calendar.HOUR_OF_DAY))
             {
@@ -102,7 +86,7 @@ public class NLService extends NotificationListenerService
                     Log.i("LG_G5", "No TimeOut");
                     if(sbn.getNotification().priority > 0)
                     {
-                        turnScreenOn();
+                        turnScreenOn(sbn.getPackageName());
                     }
                 }
             }
@@ -111,7 +95,7 @@ public class NLService extends NotificationListenerService
 
                 Log.i("LG_G5", "Start > end ");
 
-                if(now.get(Calendar.HOUR_OF_DAY) >= start.get(Calendar.HOUR_OF_DAY) && now.get(Calendar.HOUR_OF_DAY) < end.get(Calendar.HOUR_OF_DAY))
+                if(now.get(Calendar.HOUR_OF_DAY) < end.get(Calendar.HOUR_OF_DAY) && now.get(Calendar.HOUR_OF_DAY) > start.get(Calendar.HOUR_OF_DAY))
                 {
 
                 }
@@ -119,7 +103,7 @@ public class NLService extends NotificationListenerService
                 {
                     if(sbn.getNotification().priority > 0)
                     {
-                        turnScreenOn();
+                        turnScreenOn(sbn.getPackageName());
                     }
                 }
             }
@@ -129,7 +113,7 @@ public class NLService extends NotificationListenerService
         {
             if(sbn.getNotification().priority > 0)
             {
-                turnScreenOn();
+                turnScreenOn(sbn.getPackageName());
             }
         }
 
@@ -153,12 +137,104 @@ public class NLService extends NotificationListenerService
 
 
 
-    private void turnScreenOn()
+    private void turnScreenOn(String packageName)
     {
-        PowerManager.WakeLock wakeLock = ((PowerManager)context.getSystemService(POWER_SERVICE)).newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "TAG");
-        wakeLock.acquire();
-        wakeLock.release();
+        final PowerManager.WakeLock wakeLock = ((PowerManager)context.getSystemService(POWER_SERVICE)).newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "TAG");
+
+        final int duration = mySharedPreferences.getInt("ViewTimeDuration", 8);
+
+        if(mySharedPreferences.getBoolean("AppSelectionEnabled", false) == true)
+        {
+            AppItem appItem = myDb.getAppItemWithID(packageName);
+            //check if package is equal to a package which has been disabled in the settings
+            if(appItem.isChecked() == 0)
+            {
+                if(mySharedPreferences.getBoolean("SmartDeviceEnabled", false) == true)
+                {
+                    final SensorManager sensorManager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
+                    final Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
+
+                    sensorManager.registerListener(new SensorEventListener()
+                    {
+                        @Override
+                        public void onSensorChanged(SensorEvent event)
+                        {
+                            if(event.values[0] == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                wakeLock.acquire(duration * 1000);
+                            }
+
+                        }
+
+                        @Override
+                        public void onAccuracyChanged(Sensor sensor, int accuracy)
+                        {
+
+                        }
+                    }, sensor, 2 * 1000 * 1000);
+
+                }
+                else
+                {
+                    wakeLock.acquire(duration * 1000);
+                }
+            }
+        }
+        else
+        {
+            if(mySharedPreferences.getBoolean("SmartDeviceEnabled", false) == true)
+            {
+                final SensorManager sensorManager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
+                final Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
+
+                sensorManager.registerListener(new SensorEventListener()
+                {
+                    @Override
+                    public void onSensorChanged(SensorEvent event)
+                    {
+                        if(event.values[0] == 0)
+                        {
+
+                        }
+                        else
+                        {
+                            wakeLock.acquire(duration * 1000);
+                        }
+
+                    }
+
+                    @Override
+                    public void onAccuracyChanged(Sensor sensor, int accuracy)
+                    {
+
+                    }
+                }, sensor, 2 * 1000 * 1000);
+
+            }
+            else
+            {
+                wakeLock.acquire(duration * 1000);
+            }
+        }
+
+
+
+
+
+
+
+
+        
+
+
     }
+
 
 
 }

@@ -28,6 +28,16 @@
     </style>
 
 
+    <style name="PauseDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/PauseDialogAnimation</item>
+    </style>
+
+    <style name="PauseDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/about_dialog_start_anim</item>
+        <item name="android:windowExitAnimation">@anim/about_dialog_end_anim</item>
+    </style>
+
+
 
 
     

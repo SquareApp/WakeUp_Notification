@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="contact_text">Die App \'WakeUp!\'ist ein Produkt von SquareApp.  Im Falle von Fragen oder Problemen zögern Sie nicht, mich zu kontaktieren.</string>
+    <string name="contact_button_text">Kontakt</string>
+    <string name="share_text">Zögern Sie nicht, diese App mit Ihren Freunden zu teilen, wenn Sie es mögen.</string>
+    <string name="share_button_text">Teilen</string>
+
+    <string name="appversion_text">App-Version: </string>
+    <string name="app_introduction">"Diese App wird Ihr Telefon verändern\n(wenn auch nur ein wenig)"</string>
+    <string name="share_via_email_text">Sende Email mit</string>
+    <string name="share_link_text">Teile mit</string>
+    <string name="about_text">Weitere Informationen zu dieser App</string>
+    <string name="about_title">Über</string>
+    <string name="smart_device_text">Der Bildschirm schaltet sich nicht ein, wenn sich das Gerät in der Tasche befindet oder auf der Vorderseite liegt</string>
+    <string name="smart_device_title">Smartes Gerät</string>
+    <string name="time_out_text">Der Bildschirm wird während dieser Zeit nicht eingeschaltet</string>
+    <string name="time_out_title">Auszeit</string>
+    <string name="viewTime_text">Die Anzahl der Sekunden, die der Bildschirm aktiviert bleibt</string>
+    <string name="viewTime_title">Anzeigedauer</string>
+    <string name="from_text">Von</string>
+    <string name="to_text">bis</string>
+    <string name="disable_text">Deaktivieren</string>
+    <string name="activate_text">Aktivieren</string>
+    <string name="smart_device_warning">Diese Einstellung kann die Akkulaufzeit beeinflussen</string>
+
+
+</resources>
