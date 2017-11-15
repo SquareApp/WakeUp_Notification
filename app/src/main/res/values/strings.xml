@@ -15,15 +15,15 @@
     <string name="activate_text">Activate</string>
     <string name="disable_text">Disable</string>
 
-    <string name="share_via_email_text">Send mail using</string>
-    <string name="share_link_text">Share via</string>
+    <string name="share_via_email_text">Send mail using...</string>
+    <string name="share_link_text">Share via...</string>
 
     <string name="time_out_title">Time-Out</string>
     <string name="time_out_text">Screen won\'t turn on while this time</string>
     <string name="from_text">From</string>
     <string name="to_text">to</string>
 
-    <string name="viewTime_title">Display time</string>
+    <string name="viewTime_title">Duration</string>
     <string name="viewTime_text">The number of seconds that the screen remains activated</string>
 
     <string name="smart_device_title">Smart device</string>
@@ -32,4 +32,7 @@
 
     <string name="about_title">About</string>
     <string name="about_text">See information about this app and its developer</string>
+
+    <string name="exception_title">Exception</string>
+    <string name="exception_text">"Apps which won't turn on the screen"</string>
 </resources>

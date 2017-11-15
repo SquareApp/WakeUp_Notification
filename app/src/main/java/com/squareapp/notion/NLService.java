@@ -14,6 +14,7 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -30,6 +31,10 @@ public class NLService extends NotificationListenerService
     private SharedPreferences.Editor mEditor;
 
     private DatabaseHelperClass myDb;
+
+    private SensorManager sensorManager;
+
+    private Sensor sensor;
 
 
     @Override
@@ -66,7 +71,7 @@ public class NLService extends NotificationListenerService
         Log.i("TimeOutInfo", "End:" + String.valueOf(end.get(Calendar.HOUR_OF_DAY)));
 
 
-        
+
 
         if(mySharedPreferences.getBoolean("TimeOutEnabled", false) == true)
         {
@@ -74,16 +79,16 @@ public class NLService extends NotificationListenerService
 
             if(start.get(Calendar.HOUR_OF_DAY) < end.get(Calendar.HOUR_OF_DAY))
             {
-                Log.i("LG_G5", "Start < End");
+                Log.i("NLService", "Start < End");
 
-                if(now.get(Calendar.HOUR_OF_DAY) >= start.get(Calendar.HOUR_OF_DAY) && now.get(Calendar.HOUR_OF_DAY) < end.get(Calendar.HOUR_OF_DAY))
+                if(now.after(start) && now.before(end))
                 {
-                    Log.i("LG_G5", "TimeOut");
+                    Log.i("NLService", "TimeOut");
                 }
                 else
                 {
                     //e.g.: 7 to 8 => between 7 and 8 do not turn on the screen
-                    Log.i("LG_G5", "No TimeOut");
+                    Log.i("NLService", "No TimeOut");
                     if(sbn.getNotification().priority > 0)
                     {
                         turnScreenOn(sbn.getPackageName());
@@ -93,18 +98,30 @@ public class NLService extends NotificationListenerService
             else
             {
 
-                Log.i("LG_G5", "Start > end ");
+                Log.i("NLService", "Start > end ");
 
-                if(now.get(Calendar.HOUR_OF_DAY) < end.get(Calendar.HOUR_OF_DAY) && now.get(Calendar.HOUR_OF_DAY) > start.get(Calendar.HOUR_OF_DAY))
+                end.add(Calendar.DAY_OF_MONTH, 1);
+
+                if(now.after(start) && now.before(end))
                 {
-
+                    Log.i("NLService", "Timeout by Start > end");
                 }
                 else
                 {
-                    if(sbn.getNotification().priority > 0)
-                    {
-                        turnScreenOn(sbn.getPackageName());
-                    }
+
+                        Log.i("NLService", "No Timeout by Start > end");
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        Log.d("NLService", "Date end: " + sdf.format(end.getTime()));
+                        Log.d("NLService", "Date start: " + sdf.format(start.getTime()));
+                        Log.d("NLService", "Date now: " + sdf.format(now.getTime()));
+
+                        if(sbn.getNotification().priority > 0)
+                        {
+                            turnScreenOn(sbn.getPackageName());
+                        }
+
+
+
                 }
             }
 
@@ -143,16 +160,12 @@ public class NLService extends NotificationListenerService
 
         final int duration = mySharedPreferences.getInt("ViewTimeDuration", 8);
 
-        if(mySharedPreferences.getBoolean("AppSelectionEnabled", false) == true)
-        {
-            AppItem appItem = myDb.getAppItemWithID(packageName);
-            //check if package is equal to a package which has been disabled in the settings
-            if(appItem.isChecked() == 0)
-            {
+
+
                 if(mySharedPreferences.getBoolean("SmartDeviceEnabled", false) == true)
                 {
-                    final SensorManager sensorManager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
-                    final Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+                    sensorManager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
+                    sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
 
                     sensorManager.registerListener(new SensorEventListener()
@@ -167,6 +180,7 @@ public class NLService extends NotificationListenerService
                             else
                             {
                                 wakeLock.acquire(duration * 1000);
+                                sensorManager.unregisterListener(this);
                             }
 
                         }
@@ -183,45 +197,10 @@ public class NLService extends NotificationListenerService
                 {
                     wakeLock.acquire(duration * 1000);
                 }
-            }
-        }
-        else
-        {
-            if(mySharedPreferences.getBoolean("SmartDeviceEnabled", false) == true)
-            {
-                final SensorManager sensorManager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
-                final Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
 
-                sensorManager.registerListener(new SensorEventListener()
-                {
-                    @Override
-                    public void onSensorChanged(SensorEvent event)
-                    {
-                        if(event.values[0] == 0)
-                        {
 
-                        }
-                        else
-                        {
-                            wakeLock.acquire(duration * 1000);
-                        }
 
-                    }
-
-                    @Override
-                    public void onAccuracyChanged(Sensor sensor, int accuracy)
-                    {
-
-                    }
-                }, sensor, 2 * 1000 * 1000);
-
-            }
-            else
-            {
-                wakeLock.acquire(duration * 1000);
-            }
-        }
 
 
 

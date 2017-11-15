@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -55,7 +54,6 @@ public class DatabaseHelperClass extends SQLiteOpenHelper
                 +APPLIST_APPEXCLUDED + " INTEGER "
                 +")";
 
-        Toast.makeText(context, "Database created", Toast.LENGTH_SHORT).show();
         db.execSQL(createDatabase);
 
 
@@ -179,6 +177,5 @@ public class DatabaseHelperClass extends SQLiteOpenHelper
     {
         SQLiteDatabase database = getWritableDatabase();
         context.deleteDatabase(DATABASE_NAME);
-        Toast.makeText(context, "Database deleted", Toast.LENGTH_SHORT).show();
     }
 }

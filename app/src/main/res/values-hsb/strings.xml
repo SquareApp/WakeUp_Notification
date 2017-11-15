@@ -9,8 +9,8 @@
 
     <string name="appversion_text">App-Version: </string>
     <string name="app_introduction">"Diese App wird Ihr Telefon verändern\n(wenn auch nur ein wenig)"</string>
-    <string name="share_via_email_text">Sende Email mit</string>
-    <string name="share_link_text">Teile mit</string>
+    <string name="share_via_email_text">Sende Email mit...</string>
+    <string name="share_link_text">Teile mit...</string>
     <string name="about_text">Weitere Informationen zu dieser App</string>
     <string name="about_title">Über</string>
     <string name="smart_device_text">Der Bildschirm schaltet sich nicht ein, wenn sich das Gerät in der Tasche befindet oder auf der Vorderseite liegt</string>
@@ -24,6 +24,8 @@
     <string name="disable_text">Deaktivieren</string>
     <string name="activate_text">Aktivieren</string>
     <string name="smart_device_warning">Diese Einstellung kann die Akkulaufzeit beeinflussen</string>
+    <string name="exception_title">Ausnahme</string>
+    <string name="exception_text">Apps, die den Bildschirm nicht aktivieren</string>
 
 
 </resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/dialogContent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.squareapp.notion.GeneralSettingsActivity"
+    android:background="#121314"
+    android:visibility="visible"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_marginTop="10dp">
+
+
+        <Button
+            android:id="@+id/selectAllButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Select all"
+            android:background="@drawable/button_background"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:elevation="10dp"
+            app:layout_behavior="com.squareapp.notion.MoveUpwardBehavior"
+            />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/appListRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            >
+
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</FrameLayout>

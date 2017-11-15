@@ -45,7 +45,7 @@ public class GeneralSettingsActivity extends AppCompatActivity implements View.O
 
 
 
-    private static String appVersionString = "1.0";
+    private static String appVersionString = "1.0.0";
 
     //timeout
     private static final String SHAREDPREFERENCES_TIMEOUT="TimeOutEnabled";
@@ -137,7 +137,7 @@ public class GeneralSettingsActivity extends AppCompatActivity implements View.O
     {
 
 
-        this.myDb = new DatabaseHelperClass(this);
+        //this.myDb = new DatabaseHelperClass(this);
         //this.myDb.deleteDatabse();
 
         PackageInfo info = null;
@@ -150,8 +150,8 @@ public class GeneralSettingsActivity extends AppCompatActivity implements View.O
 
 
         //Adapter
-        setupLists();
-        createAppExclusionDialog();
+        //setupLists();
+        //createAppExclusionDialog();
         //adapter end
 
 
@@ -268,19 +268,6 @@ public class GeneralSettingsActivity extends AppCompatActivity implements View.O
             this.smartDeviceSwitch.setChecked(false);
             this.smartDeviceWarningText.setVisibility(View.GONE);
         }
-        //setup quicksettings
-        boolean appExclusionEnabled = mySharedPreferences.getBoolean(SHAREDPREFERENCES_APP_SELECTION, false);
-        if(appExclusionEnabled)
-        {
-            this.exclusionSwitch.setChecked(true);
-            this.editExclusionLayout.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            this.exclusionSwitch.setChecked(false);
-            this.editExclusionLayout.setVisibility(View.GONE);
-        }
-
 
 
         int viewTimeDuration = mySharedPreferences.getInt(SHAREDPREFERENCES_VIEWTIME, 8);
@@ -470,7 +457,7 @@ public class GeneralSettingsActivity extends AppCompatActivity implements View.O
                 now.get(Calendar.MINUTE),
                 true);
 
-        tpd.setTitle("From");
+        tpd.setTitle(getString(R.string.from_text));
         tpd.enableMinutes(false);
         tpd.setThemeDark(true);
 
@@ -563,7 +550,6 @@ public class GeneralSettingsActivity extends AppCompatActivity implements View.O
     private void setupLists()
     {
         List<ApplicationInfo> packages;
-
 
 
         packages = getPackageManager().getInstalledApplications(PackageManager.GET_META_DATA);
@@ -701,7 +687,8 @@ public class GeneralSettingsActivity extends AppCompatActivity implements View.O
 
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Check out this App: WakeUp! \nLink");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "WakeUp!");
+                intent.putExtra(Intent.EXTRA_TEXT, "Check out this App \n http://play.google.com/store/apps/details?id=com.squareapp.notion");
                 intent.setType("text/plain");
                 startActivity(Intent.createChooser(intent, getString(R.string.share_link_text)));
                 break;
@@ -717,7 +704,7 @@ public class GeneralSettingsActivity extends AppCompatActivity implements View.O
     @Override
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second)
     {
-        if (view.getTitle().equals("From"))
+        if (view.getTitle().equals(getString(R.string.from_text)))
         {
 
             Calendar startTime = Calendar.getInstance();
@@ -742,7 +729,7 @@ public class GeneralSettingsActivity extends AppCompatActivity implements View.O
 
             tpd.enableMinutes(false);
 
-            tpd.setTitle("to");
+            tpd.setTitle(getString(R.string.to_text));
 
             tpd.show(getFragmentManager(), "Timepickerdialog");
         }

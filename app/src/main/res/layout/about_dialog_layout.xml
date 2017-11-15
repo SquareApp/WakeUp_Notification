@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/dialogContent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.squareapp.notion.GeneralSettingsActivity"
+    android:background="#121314"
+    android:visibility="visible"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_marginTop="10dp">
+
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="monospace"
+            android:text="WakeUp!"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:maxWidth="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="monospace"
+            android:text="@string/app_introduction"
+            android:textSize="12sp"
+            android:textColor="#d0ffffff"
+            android:gravity="center_horizontal"/>
+
+
+
+        <View
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bcbcbc"
+        />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="always"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:maxWidth="300dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:text="@string/contact_text"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center_horizontal"
+                    />
+
+
+
+
+
+                <Button
+                    android:id="@+id/contactButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="@string/contact_button_text"
+                    android:background="@drawable/button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="60dp"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:elevation="10dp"
+                    app:layout_behavior="com.squareapp.notion.MoveUpwardBehavior"
+                    />
+
+
+
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:maxWidth="300dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:text="@string/share_text"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center_horizontal"/>
+
+                <Button
+                    android:id="@+id/shareButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="@string/share_button_text"
+                    android:background="@drawable/button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="60dp"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:elevation="10dp"
+                    app:layout_behavior="com.squareapp.notion.MoveUpwardBehavior"
+                    />
+
+
+
+
+
+                <TextView
+                    android:id="@+id/appVersionText"
+                    android:layout_width="wrap_content"
+                    android:maxWidth="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="monospace"
+                    android:text="@string/appversion_text"
+                    android:textSize="12sp"
+                    android:textColor="#d0ffffff"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="20dp"/>
+
+
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</FrameLayout>

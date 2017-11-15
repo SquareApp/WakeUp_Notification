@@ -361,7 +361,8 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
 
                     <LinearLayout
@@ -373,7 +374,7 @@
                             android:id="@+id/exclusionTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Exclusion"
+                            android:text="@string/exception_title"
                             android:textColor="@android:color/white"
                             android:textSize="16sp"/>
 
@@ -381,7 +382,7 @@
                             android:id="@+id/exclusionText"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:text="Apps which won't turn on the screen"
+                            android:text="@string/exception_text"
                             android:textColor="#a9a9a9"
                             android:textSize="14sp"/>
 
@@ -421,7 +422,25 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginRight="10dp"/>
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginRight="10dp"/>
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"/>
+
+
                             </LinearLayout>
 
 
@@ -447,6 +466,7 @@
                     android:layout_height="2dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
+                    android:visibility="gone"
                     />
 
 
@@ -501,53 +521,7 @@
                     android:layout_marginTop="15dp"
                     />
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp">
 
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
-
-                        <TextView
-                            android:id="@+id/timeoutTitleText6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Help"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp"/>
-
-                        <TextView
-                            android:id="@+id/timeoutDescriptionText6"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:text="See for useful tips and approaches if app is not working"
-                            android:textColor="#a9a9a9"
-                            android:textSize="14sp"/>
-
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right|center_vertical"
-                        android:layout_marginRight="16dp"
-                        android:tint="@android:color/white"
-                        app:srcCompat="@drawable/ic_keyboard_arrow_right"
-                        />
-
-
-                </FrameLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    />
 
 
 
