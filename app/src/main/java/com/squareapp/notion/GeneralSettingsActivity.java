@@ -652,6 +652,7 @@ public class GeneralSettingsActivity extends AppCompatActivity implements View.O
 
             case R.id.timeOut_TimeText4:
                 setupTimeOutTimePickerDialog();
+                
                 break;
 
 
